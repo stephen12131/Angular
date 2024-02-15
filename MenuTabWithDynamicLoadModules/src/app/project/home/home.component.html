@@ -2,10 +2,10 @@
 <div class="mainsidebar {{storedTheme}}">
     <div class="sidebar position-fixed bg-white top-0 bottom-0 border-end" [ngClass]="{'sidebarmenuwidth':showToggle}">
         <!-- <div class="d-flex align-items-center p-3 heading">
-            <a href="#" class="sidebar-logo text-uppercase fw-bold text-decoration-none fs-4">dolphin-fx</a>
+            
         </div> -->
-        <button id="logo-section" aria-label="Dolphin FX" title="Go to Dashboard" class="btn logo-btn border-0">
-            <div class="text-center"><img src="../assets/images/dolphin-fx.jpg" alt="Dolphinfx-logo" width="150"
+        <button id="logo-section" aria-label="sample label" title="Go to Dashboard" class="btn logo-btn border-0">
+            <div class="text-center"><img src="../assets/images/angularlogo.png" alt="angular-logo" width="150"
                     class="main-logo hover"></div>
         </button>
         <ul class="sidebar-menu p-3 mt-0 mb-0">
@@ -68,7 +68,7 @@
         <div class="p-2">
             <!-- start: Navbar -->
             <nav class="ms-auto px-4 py-2 rounded shadow d-flex justify-content-between">
-                <!-- <img src="../assets/images/dolphinfx-white.png" alt="Dolphinfx-logo" width="150" class="main-logo hover"> -->
+                
                 <a (click)="sidebarmethod()">
                     <i class="sidebar-toggle bi bi-list ms-auto fs-4 "></i>
                 </a>
@@ -110,7 +110,7 @@
                     <li class="nav-item dropdown userprofile me-0">
                         <a role="button" id="userScreen" data-bs-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false" aria-label="User Profile">
-                            <!-- <span class="u-name text-end text-overflow defaultCase me-1" title="THAI">THAI</span> -->
+                            
                             <button aria-label="User Icon"
                                 class="btn btn-light icon user-icon ms-2 me-1 ng-star-inserted">
                                 <i class="bi bi-person-down "></i>
@@ -169,18 +169,7 @@
                 </button>
             </div>
         </div>
-        <!-- <h4>Switch Theme</h4> -->
-        <!-- <div class="theme-toggler">
-            <span>light</span>
-            <div class="form-check form-switch ms-auto">
-                <input type="checkbox" id="colormodechanger" class="form-check-input" 
-                    (change)="toggleMode()">
-                <label for="colormodechanger" class="form-check-label">Toggle Dark Mode</label>
-            </div>
-
-            <span class="toggler"></span>
-            <span>dark</span>
-        </div> -->
+      
 
         <div class="card border-0">
             <div id="theme" class="card-body p-3 py-0 mt-3">
@@ -192,19 +181,7 @@
                     </li>
 
 
-                    <!-- <li role="presentation" class="nav-item">
-                        <a id="menu-tab1" data-bs-toggle="tab" href="#menuSetting1" role="tab" aria-selected="true"
-                            class="nav-link">
-
-                            Menu </a>
-                    </li> -->
-                    <!-- <li role="presentation" class="nav-item">
-
-                        <a id="layout-tab1" data-bs-toggle="tab" href="#userLayout1" role="tab" aria-selected="true"
-                            class="nav-link">
-
-                            Layout </a>
-                    </li> -->
+                   
                 </ul>
 
                 <div id="userSetting" class="tab-content tabcontent px-0">
@@ -214,10 +191,7 @@
                                 role="button" id="defaultTheme" aria-label="Default" class="theme-btn defaultBg me-2"
                                 (click)="setTheme('defaultBg')">
                             </a>
-                            <!-- <a title="Yellow" [ngClass]="(storedTheme === 'yellowBg') ? 'active' : ''" placement="top"
-                                role="button" id="YellowTheme" aria-label="Yellow"
-                                class="theme-btn yellowBg me-2" (click)="setTheme('yellowBg')">
-                            </a> -->
+                           
                             <a title="Green" [ngClass]="(storedTheme === 'greenBg') ? 'active' : ''" placement="top"
                                 role="button" id="greenTheme" aria-label="Green" class="theme-btn greenBg me-2"
                                 (click)="setTheme('greenBg')">
