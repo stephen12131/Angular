@@ -1,0 +1,255 @@
+<!-- class="darkmode {{storedColorMode}}" -->
+<div class="mainsidebar {{storedTheme}}">
+    <div class="sidebar position-fixed bg-white top-0 bottom-0 border-end" [ngClass]="{'sidebarmenuwidth':showToggle}">
+        <!-- <div class="d-flex align-items-center p-3 heading">
+            <a href="#" class="sidebar-logo text-uppercase fw-bold text-decoration-none fs-4">dolphin-fx</a>
+        </div> -->
+        <button id="logo-section" aria-label="Dolphin FX" title="Go to Dashboard" class="btn logo-btn border-0">
+            <div class="text-center"><img src="../assets/images/dolphin-fx.jpg" alt="Dolphinfx-logo" width="150"
+                    class="main-logo hover"></div>
+        </button>
+        <ul class="sidebar-menu p-3 mt-0 mb-0">
+            <li class="sidebar-menu-item active">
+                <a href="#">
+                    <i class="bi bi-kanban sidebar-menu-item-icon fs-5"></i>
+                    <span class="sidebar-menu-item-text fw-bold">Dashboard</span>
+                </a>
+            </li>
+            <li class="sidebar-menu-item has-dropdown mt-3">
+                <a (click)="pagedrop()">
+                    <i class="bi bi-file-earmark-break sidebar-menu-item-icon fs-5"></i>
+                    <span class="sidebar-menu-item-text">Pages</span>
+                    <i class="bi bi-caret-down sidebar-menu-item-accordicon ms-auto"
+                        [ngClass]="{'rotate-icon': isRotated}"></i>
+                </a>
+                <ul class="sidebar-dropdown-menu" [ngClass]="{'menuitem-UpandDown': showDrop}">
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="#">
+
+                            <span class="sidebar-menu-item-text">User Profile</span>
+
+                        </a>
+                    </li>
+
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="#">
+
+                            <span class="sidebar-menu-item-text">About Us</span>
+
+                        </a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="#">
+
+                            <span class="sidebar-menu-item-text">Contect Us</span>
+
+                        </a>
+                    </li>
+                    <li class="sidebar-dropdown-menu-item">
+                        <a href="#">
+
+                            <span class="sidebar-menu-item-text">Our Team</span>
+
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+<!-- start: Main -->
+
+<div class="mainMenubar {{storedTheme}}">
+    <main class="bg-light menu" [ngClass]="{'menuwidth': showToggle}">
+        <div class="p-2">
+            <!-- start: Navbar -->
+            <nav class="ms-auto px-4 py-2 rounded shadow d-flex justify-content-between">
+                <!-- <img src="../assets/images/dolphinfx-white.png" alt="Dolphinfx-logo" width="150" class="main-logo hover"> -->
+                <a (click)="sidebarmethod()">
+                    <i class="sidebar-toggle bi bi-list ms-auto fs-4 "></i>
+                </a>
+
+                <!-- <h5 class="fw-bold mt-2">DASHBOARD</h5> -->
+
+                <!-- <div class="dropdown me-3 d-none d-sm-block">
+            </div> -->
+                <!-- 
+                <div>
+                    <input type="date" class="form-control datehover" [value]="selecteddate">
+
+                </div> -->
+                <!-- 
+                <div>
+                    <input type="date" class="form-control datehover" [value]="getFormattedDate()" 
+                           (input)="onDateInputChange($event)" (change)="onDateInputChange($event)">
+                  </div>
+                   -->
+
+
+
+                <!-- <div class="dropdown mt-2">
+              <div class="d-flex align-items-center" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <span class="me-2 d-none d-sm-block fw-bold">USER</span>
+      
+                <i class="bi bi-caret-down" [ngClass]="{'rotate-icon': isRotated}"></i>
+      
+              </div>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Manage Profile</a></li>
+                <li><a class="dropdown-item" href="#">System Preference</a></li>
+                <li><a class="dropdown-item" href="#">Log off</a></li>
+              </ul>
+            </div> -->
+
+                <ul class="navbar-nav d-none d-lg-flex">
+                    <li class="nav-item dropdown userprofile me-0">
+                        <a role="button" id="userScreen" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" aria-label="User Profile">
+                            <!-- <span class="u-name text-end text-overflow defaultCase me-1" title="THAI">THAI</span> -->
+                            <button aria-label="User Icon"
+                                class="btn btn-light icon user-icon ms-2 me-1 ng-star-inserted">
+                                <i class="bi bi-person-down "></i>
+                            </button>
+                        </a>
+                        <div id="userScreenDropdown" aria-labelledby="navbarDropdown"
+                            class="dropdown-menu dropdown-menu-end">
+                            <a id="manageProfile" role="button" aria-label="Manage Profile"
+                                class="dropdown-item disabled">
+                                Manage
+                                Profile
+                            </a>
+                            <a id="sysPreference" role="button" aria-label="System Preference" class="dropdown-item"
+                                (click)="themeSwitcher()"> System
+                                Preference </a>
+                            <a id="signout" role="button" aria-label="Log off" class="dropdown-item logoffbtn"> Log off
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+
+            </nav>
+            <!-- end: Navbar -->
+        </div>
+    </main>
+</div>
+
+<!-- start: 2nd nav bar -->
+
+<div class="staticnav" [ngClass]="{'menuwidth': showToggle}">
+    <div class="p-2">
+        <!-- start: Navbar -->
+        <nav class="ms-auto px-4 py-2 bg-white shadow justify-content-between">
+            <span class="fw-bold">Dashboard</span>
+        </nav>
+        <!-- end: Navbar -->
+
+    </div>
+</div>
+
+
+<!-- slideRight -->
+<!-- Theme Switcher -->
+<div id="sysSettingPanel" class="setting-panel {{storedTheme}}" *ngIf="!themeChange"
+    [ngClass]="{'slideRight': !themeChange}">
+    <div class="setting-panel-inner col-12">
+
+        <div class="d-flex align-items-center mb-2 p-3 border-bottom settingscolor">
+            <h2 class="h6 regular d-flex align-items-center mb-0 fw-bold fs-5"> Settings </h2>
+
+            <div class="ms-auto d-flex align-items-center">
+                <button aria-label="Close Setting Panel" class="btn btn-sm btn-light icon-sm" (click)="themeSwitcher()">
+
+                    <i class="bi bi-x-lg"></i>
+
+                </button>
+            </div>
+        </div>
+        <!-- <h4>Switch Theme</h4> -->
+        <!-- <div class="theme-toggler">
+            <span>light</span>
+            <div class="form-check form-switch ms-auto">
+                <input type="checkbox" id="colormodechanger" class="form-check-input" 
+                    (change)="toggleMode()">
+                <label for="colormodechanger" class="form-check-label">Toggle Dark Mode</label>
+            </div>
+
+            <span class="toggler"></span>
+            <span>dark</span>
+        </div> -->
+
+        <div class="card border-0">
+            <div id="theme" class="card-body p-3 py-0 mt-3">
+                <ul id="myTab" role="tablist" class="nav nav-pills">
+                    <li role="presentation" class="nav-item">
+
+                        <a id="theme-tab1" data-bs-toggle="tab" href="#theme1" role="tab" aria-selected="true"
+                            class="nav-link active"> Themes </a>
+                    </li>
+
+
+                    <!-- <li role="presentation" class="nav-item">
+                        <a id="menu-tab1" data-bs-toggle="tab" href="#menuSetting1" role="tab" aria-selected="true"
+                            class="nav-link">
+
+                            Menu </a>
+                    </li> -->
+                    <!-- <li role="presentation" class="nav-item">
+
+                        <a id="layout-tab1" data-bs-toggle="tab" href="#userLayout1" role="tab" aria-selected="true"
+                            class="nav-link">
+
+                            Layout </a>
+                    </li> -->
+                </ul>
+
+                <div id="userSetting" class="tab-content tabcontent px-0">
+                    <div id="theme1" role="tabpanel" aria-labelledby="Theme-tab" class="tab-pane fade show active">
+                        <div class="theme-options">
+                            <a title="Default" [ngClass]="(storedTheme === 'defaultBg') ? 'active' : ''" placement="top"
+                                role="button" id="defaultTheme" aria-label="Default" class="theme-btn defaultBg me-2"
+                                (click)="setTheme('defaultBg')">
+                            </a>
+                            <!-- <a title="Yellow" [ngClass]="(storedTheme === 'yellowBg') ? 'active' : ''" placement="top"
+                                role="button" id="YellowTheme" aria-label="Yellow"
+                                class="theme-btn yellowBg me-2" (click)="setTheme('yellowBg')">
+                            </a> -->
+                            <a title="Green" [ngClass]="(storedTheme === 'greenBg') ? 'active' : ''" placement="top"
+                                role="button" id="greenTheme" aria-label="Green" class="theme-btn greenBg me-2"
+                                (click)="setTheme('greenBg')">
+                            </a>
+                            <a title="Purple" [ngClass]="(storedTheme === 'purplebg') ? 'active' : ''" placement="top"
+                                role="button" id="purpleTheme" aria-label="Purple" class="theme-btn purplebg me-2"
+                                (click)="setTheme('purplebg')">
+                            </a>
+                            <a title="Orange" [ngClass]="(storedTheme === 'orangeBg') ? 'active' : ''" placement="top"
+                                role="button" id="orangeTheme" aria-label="Orange" class="theme-btn orangeBg me-2"
+                                (click)="setTheme('orangeBg')">
+                            </a>
+                            <a title="Grey" [ngClass]="(storedTheme === 'greyBg') ? 'active' : ''" placement="top"
+                                role="button" id="greyTheme" aria-label="Grey" class="theme-btn greyBg me-2"
+                                (click)="setTheme('greyBg')">
+                            </a>
+                            <a title="Blue" [ngClass]="(storedTheme === 'blueBg') ? 'active' : ''" placement="top"
+                                role="button" id="blueTheme" aria-label="Blue" class="theme-btn blueBg me-2"
+                                (click)="setTheme('blueBg')">
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<div [ngClass]="{'menupagesize':showToggle}">
+    <app-menu></app-menu>
+</div>
