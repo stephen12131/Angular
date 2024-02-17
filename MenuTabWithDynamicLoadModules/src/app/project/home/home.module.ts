@@ -1,8 +1,9 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HomeComponent } from './home.component';
-import { MenuModule } from '../menu/menu.module';
-// import { SharedModule } from '../SharedModule';
+
+import { DynamicComponentLoader } from '../dynamic-modules/DynamicComponentLoader.service';
+
 
 
 
@@ -11,8 +12,12 @@ import { MenuModule } from '../menu/menu.module';
 @NgModule({
   declarations: [HomeComponent],
   imports: [
-    CommonModule,MenuModule
+    CommonModule,
   ],
+  providers:[
+    DatePipe,DynamicComponentLoader
+  ],
+  bootstrap: [HomeComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomeModule { }

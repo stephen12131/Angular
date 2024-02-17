@@ -1,7 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
-import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
-import { RedirectRequest } from '@azure/msal-browser';
+import { Component, ComponentRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { DynamicComponentLoader } from '../dynamic-modules/DynamicComponentLoader.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,28 +8,25 @@ import { RedirectRequest } from '@azure/msal-browser';
 })
 export class HomeComponent implements OnInit {
   loginDisplay = false;
-
-
   selecteddate: string | undefined;
-
   selectedDate!: Date;
-
   showToggle = false;
   showDrop = false;
   isRotated = false;
 
   themeChange = true;
-
   storedTheme: string | null = localStorage.getItem('theme-color');
   storedColorMode: string | null = localStorage.getItem('colorMode');
-
-
-
   isDarkMode: boolean = false;
 
-  constructor(private authService: MsalService,
-    private msalBroadcastService: MsalBroadcastService,
-    @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration, private datepipe: DatePipe) {
+  //dynamic load 
+  resolvedDashBoardCompFactories: any; 
+  compProfileReference!: ComponentRef<any>;  
+  compReference!: ComponentRef<any>;
+  @ViewChild('testOutlet', {read: ViewContainerRef}) testOutlet!: ViewContainerRef;
+
+
+  constructor( private datepipe: DatePipe,private dynamicComponentLoader: DynamicComponentLoader,) {
     this.selectedDate = new Date();
   }
 
@@ -41,31 +37,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //  this.checkAzureLogin();
-
+    
     this.selecteddate = new Date().toLocaleDateString();
 
   }
 
-  checkAzureLogin() {
-    let str = 'msal.account.keys'
-    let arure = 'azuread';
-    const local = localStorage.getItem(str);
-    const localarure = localStorage.getItem(arure);
-    if (localarure == null || localarure === undefined || undefined !== 'Y') {
-      if (local === null || local === undefined || local === '') {
-        if (this.msalGuardConfig.authRequest) {
-          this.authService.loginRedirect({ ...this.msalGuardConfig.authRequest } as RedirectRequest);
-        } else {
-          this.authService.loginRedirect();
-        }
-
-      } else {
-        localStorage.setItem("azuread", "Y");
-      }
-    }
-  }
-
+  
   toggleMode() {
 
 
@@ -77,18 +54,7 @@ export class HomeComponent implements OnInit {
 
 
     this.storedColorMode = localStorage.getItem('colorMode');
-    // console.log(this.storedColorMode);
-
-    // Apply the selected mode to the body
-    // const body = document.querySelector('body');
-    // console.log(body);
-
-    // if (body) {
-    //   body.classList.toggle('dark-mode', this.isDarkMode);
-    //   body.classList.toggle('light-mode', !this.isDarkMode);
-    // }
-
-
+   
   }
 
   onDateInputChange(event: Event) {
@@ -102,8 +68,7 @@ export class HomeComponent implements OnInit {
   }
 
   getFormattedDate(): string {
-    // console.log('3', this.datepipe.transform(this.selectedDate, 'd/M/yyyy') || '');
-
+   
     return this.datepipe.transform(this.selectedDate, 'd/M/yyyy') || '';
   }
 
@@ -128,6 +93,22 @@ export class HomeComponent implements OnInit {
     this.themeChange = !this.themeChange;
     console.log(this.themeChange);
 
+  }
+
+  loadComponent(componentId:string) {
+    this.dynamicComponentLoader
+    .getComponentFactory(componentId).then((resolvedCompFactories: any) => {
+     try {
+       this.testOutlet.createComponent(resolvedCompFactories);     
+       this.compReference.changeDetectorRef.detectChanges();
+     } catch (e) {
+      
+     }
+   }).catch(e => {
+    
+   });
+ } catch () {
+   console.log("iam working");
   }
 
 }
