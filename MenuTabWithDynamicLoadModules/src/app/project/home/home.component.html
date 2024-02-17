@@ -32,9 +32,9 @@
                     </li>
 
                     <li class="sidebar-dropdown-menu-item">
-                        <a href="#">
+                        <a (click)="loadComponent('book')">
 
-                            <span class="sidebar-menu-item-text">About Us</span>
+                            <span class="sidebar-menu-item-text">Book</span>
 
                         </a>
                     </li>
@@ -73,38 +73,7 @@
                     <i class="sidebar-toggle bi bi-list ms-auto fs-4 "></i>
                 </a>
 
-                <!-- <h5 class="fw-bold mt-2">DASHBOARD</h5> -->
-
-                <!-- <div class="dropdown me-3 d-none d-sm-block">
-            </div> -->
-                <!-- 
-                <div>
-                    <input type="date" class="form-control datehover" [value]="selecteddate">
-
-                </div> -->
-                <!-- 
-                <div>
-                    <input type="date" class="form-control datehover" [value]="getFormattedDate()" 
-                           (input)="onDateInputChange($event)" (change)="onDateInputChange($event)">
-                  </div>
-                   -->
-
-
-
-                <!-- <div class="dropdown mt-2">
-              <div class="d-flex align-items-center" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                <span class="me-2 d-none d-sm-block fw-bold">USER</span>
-      
-                <i class="bi bi-caret-down" [ngClass]="{'rotate-icon': isRotated}"></i>
-      
-              </div>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Manage Profile</a></li>
-                <li><a class="dropdown-item" href="#">System Preference</a></li>
-                <li><a class="dropdown-item" href="#">Log off</a></li>
-              </ul>
-            </div> -->
+              
 
                 <ul class="navbar-nav d-none d-lg-flex">
                     <li class="nav-item dropdown userprofile me-0">
@@ -225,5 +194,5 @@
 
 
 <div [ngClass]="{'menupagesize':showToggle}">
-    <app-menu></app-menu>
+    <div #testOutlet></div>
 </div>
